@@ -13,6 +13,8 @@ class ProductController extends Controller
     {
         $product = new Product();
 
+        $em = $this->getDoctrine()->getManager();
+
         $form = $this->createForm(new ProductType(), $product,
             array(
                 'attr' => array(
@@ -24,6 +26,11 @@ class ProductController extends Controller
         $form->handleRequest($request);
 
         if($form->isValid()){
+
+            //save in database
+            $em->persist($product);
+            $em->flush();
+
             return $this->redirectToRoute('store_frontend_accueil');
         }
 
