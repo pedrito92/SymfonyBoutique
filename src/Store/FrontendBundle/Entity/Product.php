@@ -31,8 +31,8 @@ class Product
      * @Assert\Length(
      *      min = "5",
      *      max = "30",
-     *      minMessage = "Votre titre doit faire au moins {{limit}} caractères",
-     *      maxMessage = "Votre titre ne peut pas être plus long que {{limit}} caractères"
+     *      minMessage = "Votre titre doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre titre ne peut pas être plus long que {{ limit }} caractères"
      * )
      * @ORM\Column(name="title", type="string", length=60, nullable=true)
      */
@@ -41,6 +41,10 @@ class Product
     /**
      * @var string
      *
+     * @Assert\Regex(
+     *      pattern = "/[a-zA-Z0-9-_\. ]{10,}/",
+     *      message = "Votre description n'est pas valide"
+     * )
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
@@ -71,6 +75,13 @@ class Product
 
     /**
      * @var \Doctrine\Common\Collections\Collection
+     *
+     * @Assert\Count(
+     *      min = "2",
+     *      max = "5",
+     *      minMessage = "Vous devez spécifier au moins {{ limit }} tag",
+     *      maxMessage = "Vous devez spécifier {{ limit }} tags maximum"
+     * )
      *
      * @ORM\ManyToMany(targetEntity="Tag", inversedBy="product")
      * @ORM\JoinTable(name="product_tag",
