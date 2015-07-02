@@ -1,0 +1,84 @@
+{% extends "StoreFrontendBundle::layout.html.twig" %}
+
+{% block content %}
+    <ul>
+        {% if title is defined  and title is not empty%}
+            <li>{{ title }}</li>
+        {% else %}
+            <li>Aucun titre pour le moment</li>
+        {% endif %}
+        <li>{{ description }}</li>
+        <li>{{ keywords }}</li>
+        <li>{{ today | date('d/m/Y h:i') }}</li>
+        <li>
+            <ul>
+                {% for tag in tags %}
+                    <li >{{ tag }}</li>
+                    {% else %}
+                    <li>Aucun tags de trouvés</li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li>
+            <ul>
+                {% for product in products %}
+                    {% if product.visible %}
+                        <li>{{ product.title }} - {{ product.description }}</li>
+                        {% endif %}
+                    {% else %}
+                    <li>Aucun product de trouvés</li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li>
+            <ul>
+                {% for product in visible %}
+                    {% if product.visible %}
+                        <li>{{ product.title }} - {{ product.description }} - {{ product.created }}</li>
+                        {% endif %}
+                    {% else %}
+                    <li>Aucun product de trouvés</li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li>
+            <ul>
+                {% for categorie in categories %}
+                    <li>{{ categorie.title }}</li>
+                    <li>
+                        <ul>
+                            {% for product in categorie.product %}
+                                <li>{{ product.title }}</li>
+                            {% else %}
+                                <li>Aucun product de trouvés</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li>Aucune catégories de trouvées</li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+
+    <div class="well">
+        <h3>{{ product.title }}</h3>
+        <h5>{{ product.category.title }}</h5>
+        <ul>
+            {% for tag in product.tag %}
+                <li>{{ tag.word }}</li>
+                <li>
+                    <ul>
+                        {% for product in tag.product %}
+                        <li>{{ product.title }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="well">
+        {{ dump(homepage) }}
+    </div>
+{% endblock %}

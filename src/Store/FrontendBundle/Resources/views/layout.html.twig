@@ -1,0 +1,18 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <h1>Boutique en ligne</h1>
+        {{ include('StoreFrontendBundle:Main:_navbar.html.twig') }}
+
+        {% block content %}
+        {% endblock %}
+
+        {{ include('StoreFrontendBundle:Main:_footer.html.twig') }}
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset("js/frontendbundle/main.js") }}"></script>
+{% endblock %}

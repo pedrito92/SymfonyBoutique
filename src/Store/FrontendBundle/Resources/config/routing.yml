@@ -1,0 +1,17 @@
+store_frontend_homepage:
+    path:     /plopi/{name}
+    defaults: { _controller: StoreFrontendBundle:Default:index }
+
+store_frontend_accueil:
+    path:     /
+    defaults: { _controller: StoreFrontendBundle:Main:homepage }
+
+#Jeu de route Statics
+store_frontend_statics:
+    resource: "@StoreFrontendBundle/Resources/config/routing/statics.yml"
+    prefix: /
+
+#Jeu de route Product
+store_frontend_product:
+    resource: "@StoreFrontendBundle/Resources/config/routing/product.yml"
+    prefix: /product
