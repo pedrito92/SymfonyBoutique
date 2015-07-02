@@ -36,7 +36,9 @@ class ProductType extends AbstractType
             ->add('visible', null, array(
                 'label' => 'Est-t-il visible?'
             ))
-            ->add('created')
+            ->add('created', null, array(
+                'label' => 'Date de création'
+            ))
             ->add('category', null, array(
                 'label' => 'Catégorie du produit',
                 'attr' => array(

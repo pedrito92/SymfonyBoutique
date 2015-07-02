@@ -3,6 +3,7 @@
 namespace Store\FrontendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Product
@@ -24,6 +25,15 @@ class Product
     /**
      * @var string
      *
+     * @Assert\NotBlank(
+     *      message = "Le titre ne doit pas être vide"
+     * )
+     * @Assert\Length(
+     *      min = "5",
+     *      max = "30",
+     *      minMessage = "Votre titre doit faire au moins {{limit}} caractères",
+     *      maxMessage = "Votre titre ne peut pas être plus long que {{limit}} caractères"
+     * )
      * @ORM\Column(name="title", type="string", length=60, nullable=true)
      */
     private $title;
