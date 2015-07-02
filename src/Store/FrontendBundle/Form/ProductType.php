@@ -23,11 +23,32 @@ class ProductType extends AbstractType
                     'pattern' => '[a-zA-Z ]{5,}'
                 )
             ))
-            ->add('description')
-            ->add('visible')
+            ->add('description', null, array(
+                'label' => 'Description du produit',
+                'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Description du produit',
+                    'rows' => 5,
+                    'cols' => 10,
+                    'pattern' => '[a-zA-Z ]{35,}'
+                )
+            ))
+            ->add('visible', null, array(
+                'label' => 'Est-t-il visible?'
+            ))
             ->add('created')
-            ->add('category')
-            ->add('tag')
+            ->add('category', null, array(
+                'label' => 'Catégorie du produit',
+                'attr' => array(
+                    'class' => 'form-control',
+                )
+            ))
+            ->add('tag', null, array(
+                'label' => 'Tag du produit',
+                'attr' => array(
+                    'class' => 'form-control',
+                )
+            ))
             ->add('Enregistrer', 'submit', array(
                 'attr' => array(
                     'class' => 'btn btn-primary'
