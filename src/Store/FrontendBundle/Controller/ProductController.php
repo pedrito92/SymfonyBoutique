@@ -39,7 +39,7 @@ class ProductController extends Controller
             ));
     }
 
-    public function editAction($id){
+    public function editAction(Request $request, $id){
         $em = $this->getDoctrine()->getManager();
         $product = $em->getRepository('StoreFrontendBundle:Product')->find((int)$id);
 
@@ -49,6 +49,8 @@ class ProductController extends Controller
                    'method' => 'post'
                )
             ));
+
+        $form->handleRequest($request);
 
         if($form->isValid()){
 
@@ -60,7 +62,8 @@ class ProductController extends Controller
         }
 
         return $this->render('StoreFrontendBundle:Product:edit.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'product' => $product
         ));
     }
 
