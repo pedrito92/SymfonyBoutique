@@ -1,0 +1,13 @@
+{% extends "StoreFrontendBundle::layout.html.twig" %}
+
+
+{% block content %}
+<h1>{{ product.title }}</h1>
+    <p>{{ product.description }}</p>
+
+    <div class="list-group">
+        {% for tag in product.tag %}
+            <button type="button" class="list-group-item">{{ tag }}</button>
+        {% endfor %}
+    </div>
+{% endblock %}

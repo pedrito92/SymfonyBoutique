@@ -67,4 +67,23 @@ class ProductController extends Controller
         ));
     }
 
+    public function itemAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository('StoreFrontendBundle:Product')->find((int)$id);
+
+        return $this->render('StoreFrontendBundle:Product:item.html.twig', array(
+            'product' => $product
+        ));
+    }
+
+    public function deleteAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository('StoreFrontendBundle:Product')->find((int)$id);
+
+        $em->remove($product);
+        $em->flush();
+
+        return $this->render('StoreFrontendBundle:Main:homepage.html.twig');
+    }
+
 }

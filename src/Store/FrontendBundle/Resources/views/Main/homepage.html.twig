@@ -24,9 +24,10 @@
                 {% for product in products %}
                     {% if product.visible %}
                         <li>
-                            {{ product.title }} - {{ product.description }}
-                            <br/>
-                            <a href="{{ path("store_frontend_product_edit", {'id' : product.id}) }}">Editer ce produit</a>
+                            <a href="{{ path('store_frontend_product_item', {'id' : product.id}) }}">{{ product.title }}</a> - {{ product.description }}
+
+                            <a href="{{ path("store_frontend_product_edit", {'id' : product.id}) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                            <a href="{{ path("store_frontend_product_delete", {'id' : product.id}) }}"><span class="glyphicon glyphicon-trash"></span></a>
                         </li>
                         {% endif %}
                     {% else %}
