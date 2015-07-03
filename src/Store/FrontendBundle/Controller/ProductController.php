@@ -83,7 +83,7 @@ class ProductController extends Controller
         $em->remove($product);
         $em->flush();
 
-        return $this->render('StoreFrontendBundle:Main:homepage.html.twig');
+        return $this->redirectToRoute('store_frontend_accueil');
     }
 
 }
