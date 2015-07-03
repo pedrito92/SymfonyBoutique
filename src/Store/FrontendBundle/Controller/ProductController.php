@@ -19,7 +19,7 @@ class ProductController extends Controller
             array(
                 'attr' => array(
                     'method' => 'post',
-                    'novalidate' => 'novalidate'
+//                    'novalidate' => 'novalidate'
                 )
             ));
 
@@ -36,6 +36,32 @@ class ProductController extends Controller
 
         return $this->render('StoreFrontendBundle:Product:new.html.twig', array(
                 'form' => $form->createView()
-            ));    }
+            ));
+    }
+
+    public function editAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository('StoreFrontendBundle:Product')->find((int)$id);
+
+        $form = $this->createForm(new ProductType(), $product,
+            array(
+               'attr' => array(
+                   'method' => 'post'
+               )
+            ));
+
+        if($form->isValid()){
+
+            //save in database
+            $em->persist($product);
+            $em->flush();
+
+            return $this->redirectToRoute('store_frontend_accueil');
+        }
+
+        return $this->render('StoreFrontendBundle:Product:edit.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
 
 }

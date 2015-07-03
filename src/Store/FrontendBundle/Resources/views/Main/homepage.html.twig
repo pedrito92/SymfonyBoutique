@@ -23,7 +23,11 @@
             <ul>
                 {% for product in products %}
                     {% if product.visible %}
-                        <li>{{ product.title }} - {{ product.description }}</li>
+                        <li>
+                            {{ product.title }} - {{ product.description }}
+                            <br/>
+                            <a href="{{ path("store_frontend_product_edit", {'id' : product.id}) }}">Editer ce produit</a>
+                        </li>
                         {% endif %}
                     {% else %}
                     <li>Aucun product de trouvés</li>

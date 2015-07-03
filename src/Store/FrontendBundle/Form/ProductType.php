@@ -20,7 +20,7 @@ class ProductType extends AbstractType
                 'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Titre du produit',
-                    'pattern' => '[a-zA-Z ]{5,}'
+                    'pattern' => '[a-zA-Z0-9 ]{5,}'
                 )
             ))
             ->add('description', null, array(
