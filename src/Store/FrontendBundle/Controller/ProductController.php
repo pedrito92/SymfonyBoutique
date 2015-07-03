@@ -31,6 +31,11 @@ class ProductController extends Controller
             $em->persist($product);
             $em->flush();
 
+            //créer un mesage flush
+            $this->get('session')->getFlashBag()->add(
+                'notice', 'Votre produit a bien été ajouté'
+            );
+
             return $this->redirectToRoute('store_frontend_accueil');
         }
 
@@ -58,6 +63,11 @@ class ProductController extends Controller
             $em->persist($product);
             $em->flush();
 
+            //créer un mesage flush
+            $this->get('session')->getFlashBag()->add(
+                'notice', 'Votre produit a bien été modifié'
+            );
+
             return $this->redirectToRoute('store_frontend_accueil');
         }
 
@@ -82,6 +92,11 @@ class ProductController extends Controller
 
         $em->remove($product);
         $em->flush();
+
+        //créer un mesage flush
+        $this->get('session')->getFlashBag()->add(
+            'notice', 'Votre produit a bien été supprimé'
+        );
 
         return $this->redirectToRoute('store_frontend_accueil');
     }
